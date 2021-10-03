@@ -5,10 +5,13 @@ import 'package:webapi/textCard.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_) => CovidTrakerModelService()),
+      ChangeNotifierProvider(create: (_) => CovidTrackerService()),
     ], child: MyApp()));
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,13 +19,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Get Data from Json Service'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -30,20 +33,19 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-
 class _MyHomePageState extends State<MyHomePage> {
-
+  late String report;
 
   @override
-  void initstate() {
-    Provider.of<CovidTrakerModelService>(context, listen: false)
-        .getCovidTravkerData();
+  void initState() {
+    Provider.of<CovidTrackerService>(context, listen: false)
+        .getCovidTrackData();
     setState(() {});
   }
 
+  @override
   Widget build(BuildContext context) {
-    var home = Provider.of<CovidTrakerModelService>(context).home1;
-
+    var home = Provider.of<CovidTrackerService>(context).home;
     int death = home.deaths;
     int recover = home.recovered;
     int confirm = home.confirmed;
@@ -58,14 +60,15 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Covid case in Thailad: on the $update',
+              'Covid case in Thailand on the $update',
             ),
             Text(
-              'Recover $update : Confirm $confirm : Death : $death',
+              'Recover $recover: Confirm $confirm: Death : $death',
             ),
           ],
         ),
       ),
+      //
     );
   }
 }

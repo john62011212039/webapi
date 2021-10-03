@@ -1,22 +1,19 @@
-// To parse this JSON data, do
-//
-//     final covidTravkerModel = covidTravkerModelFromJson(jsonString);
-
 import 'dart:convert';
 
-CovidTravkerModel covidTravkerModelFromJson(String str) => CovidTravkerModel.fromJson(json.decode(str));
+CovidTrackerModel covidFromJson(String str) =>
+    CovidTrackerModel.fromJson(json.decode(str));
 
-String covidTravkerModelToJson(CovidTravkerModel data) => json.encode(data.toJson());
+String covidToJson(CovidTrackerModel data) => json.encode(data.toJson());
 
-class CovidTravkerModel {
-  CovidTravkerModel({
+class CovidTrackerModel {
+  CovidTrackerModel({
     required this.updated,
     required this.country,
     required this.cases,
     required this.todayCases,
-    required this.covidTravkerModelDeaths,
+    required this.covidDeaths,
     required this.todayDeaths,
-    required this.covidTravkerModelRecovered,
+    required this.covidRecovered,
     required this.todayRecovered,
     required this.active,
     required this.critical,
@@ -48,9 +45,9 @@ class CovidTravkerModel {
   String country;
   int cases;
   int todayCases;
-  int covidTravkerModelDeaths;
+  int covidDeaths;
   int todayDeaths;
-  int covidTravkerModelRecovered;
+  int covidRecovered;
   int todayRecovered;
   int active;
   int critical;
@@ -77,73 +74,74 @@ class CovidTravkerModel {
   String updateDate;
   String devBy;
 
-  factory CovidTravkerModel.fromJson(Map<String, dynamic> json) => CovidTravkerModel(
-    updated: json["updated"],
-    country: json["country"],
-    cases: json["cases"],
-    todayCases: json["todayCases"],
-    covidTravkerModelDeaths: json["deaths"],
-    todayDeaths: json["todayDeaths"],
-    covidTravkerModelRecovered: json["recovered"],
-    todayRecovered: json["todayRecovered"],
-    active: json["active"],
-    critical: json["critical"],
-    casesPerOneMillion: json["casesPerOneMillion"],
-    deathsPerOneMillion: json["deathsPerOneMillion"],
-    tests: json["tests"],
-    testsPerOneMillion: json["testsPerOneMillion"],
-    population: json["population"],
-    continent: json["continent"],
-    oneCasePerPeople: json["oneCasePerPeople"],
-    oneDeathPerPeople: json["oneDeathPerPeople"],
-    oneTestPerPeople: json["oneTestPerPeople"],
-    activePerOneMillion: json["activePerOneMillion"].toDouble(),
-    recoveredPerOneMillion: json["recoveredPerOneMillion"].toDouble(),
-    criticalPerOneMillion: json["criticalPerOneMillion"].toDouble(),
-    confirmed: json["Confirmed"],
-    recovered: json["Recovered"],
-    hospitalized: json["Hospitalized"],
-    deaths: json["Deaths"],
-    newConfirmed: json["NewConfirmed"],
-    newRecovered: json["NewRecovered"],
-    newHospitalized: json["NewHospitalized"],
-    newDeaths: json["NewDeaths"],
-    updateDate: json["UpdateDate"],
-    devBy: json["DevBy"],
-  );
+  factory CovidTrackerModel.fromJson(Map<String, dynamic> json) =>
+      CovidTrackerModel(
+        updated: json["updated"],
+        country: json["country"],
+        cases: json["cases"],
+        todayCases: json["todayCases"],
+        covidDeaths: json["deaths"],
+        todayDeaths: json["todayDeaths"],
+        covidRecovered: json["recovered"],
+        todayRecovered: json["todayRecovered"],
+        active: json["active"],
+        critical: json["critical"],
+        casesPerOneMillion: json["casesPerOneMillion"],
+        deathsPerOneMillion: json["deathsPerOneMillion"],
+        tests: json["tests"],
+        testsPerOneMillion: json["testsPerOneMillion"],
+        population: json["population"],
+        continent: json["continent"],
+        oneCasePerPeople: json["oneCasePerPeople"],
+        oneDeathPerPeople: json["oneDeathPerPeople"],
+        oneTestPerPeople: json["oneTestPerPeople"],
+        activePerOneMillion: json["activePerOneMillion"].toDouble(),
+        recoveredPerOneMillion: json["recoveredPerOneMillion"].toDouble(),
+        criticalPerOneMillion: json["criticalPerOneMillion"].toDouble(),
+        confirmed: json["Confirmed"],
+        recovered: json["Recovered"],
+        hospitalized: json["Hospitalized"],
+        deaths: json["Deaths"],
+        newConfirmed: json["NewConfirmed"],
+        newRecovered: json["NewRecovered"],
+        newHospitalized: json["NewHospitalized"],
+        newDeaths: json["NewDeaths"],
+        updateDate: json["UpdateDate"],
+        devBy: json["DevBy"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "updated": updated,
-    "country": country,
-    "cases": cases,
-    "todayCases": todayCases,
-    "deaths": covidTravkerModelDeaths,
-    "todayDeaths": todayDeaths,
-    "recovered": covidTravkerModelRecovered,
-    "todayRecovered": todayRecovered,
-    "active": active,
-    "critical": critical,
-    "casesPerOneMillion": casesPerOneMillion,
-    "deathsPerOneMillion": deathsPerOneMillion,
-    "tests": tests,
-    "testsPerOneMillion": testsPerOneMillion,
-    "population": population,
-    "continent": continent,
-    "oneCasePerPeople": oneCasePerPeople,
-    "oneDeathPerPeople": oneDeathPerPeople,
-    "oneTestPerPeople": oneTestPerPeople,
-    "activePerOneMillion": activePerOneMillion,
-    "recoveredPerOneMillion": recoveredPerOneMillion,
-    "criticalPerOneMillion": criticalPerOneMillion,
-    "Confirmed": confirmed,
-    "Recovered": recovered,
-    "Hospitalized": hospitalized,
-    "Deaths": deaths,
-    "NewConfirmed": newConfirmed,
-    "NewRecovered": newRecovered,
-    "NewHospitalized": newHospitalized,
-    "NewDeaths": newDeaths,
-    "UpdateDate": updateDate,
-    "DevBy": devBy,
-  };
+        "updated": updated,
+        "country": country,
+        "cases": cases,
+        "todayCases": todayCases,
+        "deaths": covidDeaths,
+        "todayDeaths": todayDeaths,
+        "recovered": covidRecovered,
+        "todayRecovered": todayRecovered,
+        "active": active,
+        "critical": critical,
+        "casesPerOneMillion": casesPerOneMillion,
+        "deathsPerOneMillion": deathsPerOneMillion,
+        "tests": tests,
+        "testsPerOneMillion": testsPerOneMillion,
+        "population": population,
+        "continent": continent,
+        "oneCasePerPeople": oneCasePerPeople,
+        "oneDeathPerPeople": oneDeathPerPeople,
+        "oneTestPerPeople": oneTestPerPeople,
+        "activePerOneMillion": activePerOneMillion,
+        "recoveredPerOneMillion": recoveredPerOneMillion,
+        "criticalPerOneMillion": criticalPerOneMillion,
+        "Confirmed": confirmed,
+        "Recovered": recovered,
+        "Hospitalized": hospitalized,
+        "Deaths": deaths,
+        "NewConfirmed": newConfirmed,
+        "NewRecovered": newRecovered,
+        "NewHospitalized": newHospitalized,
+        "NewDeaths": newDeaths,
+        "UpdateDate": updateDate,
+        "DevBy": devBy,
+      };
 }
